@@ -1,7 +1,8 @@
 window.SUCCESS_ALERTS = [
     "Nice!",
-    "Ya!",
-    "You're crushing it!"
+    "Woo!",
+    "You're crushing it!",
+    "Keep it up!"
 ];
 
 function getRandomInt(min, max) {
@@ -19,6 +20,7 @@ function assignProblemNumbers() {
     rightNum.innerHTML = rightNumValue;
 }
 
+// This ensures the time counter values are always 2 digits.
 function formatTime(num) {
     if (num > 9) {
         return num;
@@ -52,7 +54,7 @@ function incrementSeconds() {
 }
 
 function updateTimer() {
-    var csCounter, secCounter, minCounter;
+    var csCounter;
     csCounter = document.getElementById('centiseconds');
     csCount = csCounter.innerHTML;
     if (!isNaN(csCount)) {
@@ -67,6 +69,7 @@ function updateTimer() {
     }
 }
 
+// Calculates the correct product of the two numbers on screen
 function getCorrectAnswer() {
     var leftNum, rightNum;
     leftNum = parseInt(document.getElementById('left-num').innerHTML, 10);
@@ -76,16 +79,26 @@ function getCorrectAnswer() {
 
 function randomSuccessAlert(choices) {
     var retval;
+    var currentAlert = document.getElementById('alert-text').innerHTML;
     var idx = getRandomInt(1, 10) % window.SUCCESS_ALERTS.length;
-    return window.SUCCESS_ALERTS[idx];
+    while (true) {
+        if (currentAlert == window.SUCCESS_ALERTS[idx]) {
+            idx = getRandomInt(1, 10) % window.SUCCESS_ALERTS.length;
+        }
+        else {
+            return window.SUCCESS_ALERTS[idx];
+        }
+    }
 }
 
+// Display an alert on the screen, used for communicating to the user
 function showAlert(className, alertText) {
     var alertElement = document.getElementById('alert-text');
     alertElement.className = className;
     alertElement.innerHTML = alertText;
 }
 
+// Clear the current answer in the text input
 function clearAnswer() {
     document.getElementById('answer-form').reset();
 }
@@ -96,14 +109,15 @@ function resetTimer() {
     document.getElementById('minutes').innerHTML = '00';
 }
 
+// TODO: figure out how to make this also re-animate the new numbers
 function resetProblem() {
-    // TODO: implement this
     assignProblemNumbers();
     clearAnswer();
     document.getElementById('answer-input').focus();
     resetTimer();
 }
 
+// Determine if the user's input is correct, and reset the problem if it is
 function checkAnswer(e) {
     if (e.preventDefault) {
         e.preventDefault();
@@ -111,7 +125,6 @@ function checkAnswer(e) {
 
     var answerText = document.getElementById('answer-input').value;
     if (isNaN(answerText)) {
-        // showNanMessage();
         showAlert('error-alert', "That wasn't even a number!");
         clearAnswer();
         return;
@@ -127,19 +140,17 @@ function checkAnswer(e) {
         showAlert('success-alert', randomSuccessAlert());
     }
     else {
-        // TODO: remove alert, actually show a message
-
-        alert('not correct');
+        clearAnswer();
+        showAlert('error-alert', 'Wrong!');
     }
 }
 
+// Main function
 window.onload = function() {
     var answerForm = document.getElementById('answer-form');
     assignProblemNumbers();
     msTickInterval = setInterval(updateTimer, 10);
-    document.getElementById('timer').onclick = function() {
-        clearInterval(msTickInterval);
-    }
+    
     if (answerForm.addEventListener) {
         answerForm.addEventListener('submit', checkAnswer);
     }

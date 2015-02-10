@@ -7,9 +7,10 @@ $font-color:     #304080;
 $font-color: #e3e3e3;
 $number-margin:  25px;
 
-body {
+#body {
   // background-color: $bg-color;
-  @include background-image(linear-gradient(to left, #fff, #f4f5f7));
+  // @include background-image(linear-gradient(to left, #fff, #f4f5f7));
+  background-color: #e3e3e3;
   color: $font-color;
   font-family: $font-stack;
   margin-bottom: 60px;
@@ -18,9 +19,11 @@ body {
 
 #column {
     // background-color: #52B3D9;
-    background: linear-gradient(to bottom, #52B3D9, #2574A9);
+    background: linear-gradient(to bottom, #52B3D9, #52B3D9 60%, #2574A9);
+    // background: white;
     // border: 6px solid #52B3D9;
-    height: 1000px;
+    color: #e3e3e3;
+    height: 600px;
   margin: 0 auto;
   max-width: $main-col-width;
   text-align: center;
@@ -73,6 +76,7 @@ body {
     background-color: white;
     -webkit-border-radius: 10px;
     border-radius: 10px;
+    color: black;
     left: 5px;
     padding: 10px;
     position: fixed;
@@ -102,29 +106,18 @@ body {
 }
 
 #left-num {
-    position: fixed;
-    top: 50px;
-    left: 450px;
     margin-right: $number-margin;
 }
 
 #right-num {
-    position: fixed;
-    top: 50px;
-    right: 450px;
     margin-left: $number-margin;
 }
 
 #operator {
-    position: fixed;
-    top: 100px;
     font-size: 50px;
 }
 
 #timer {
-    position: fixed;
-    left: 550px;
-    top: 350px;
     font-size: 45px;
     margin-top: 65px;
 }
@@ -132,12 +125,6 @@ body {
 :focus {
     outline-color: transparent;
     outline-style: none;
-}
-
-#answer-input {
-    position: fixed;
-    top: 250px;
-    left: 700px;
 }
 
 #answer-input {
@@ -152,11 +139,11 @@ body {
 }
 
 .error-alert {
-    color: red;
+    color: #f22613;
 }
 
 .success-alert {
-    color: green;
+    color: #A2DED0;
 }
 
 #footer {
@@ -169,6 +156,7 @@ body {
     width: 100%;
 
     p {
+        color: black;
         margin-top: 20px;
     }
 }

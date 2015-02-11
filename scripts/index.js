@@ -103,18 +103,23 @@ function clearAnswer() {
     document.getElementById('answer-form').reset();
 }
 
+function clearAlert() {
+    document.getElementById('alert-text').innerHTML = '';
+}
+
 function resetTimer() {
     document.getElementById('centiseconds').innerHTML = '00';
     document.getElementById('seconds').innerHTML = '00';
     document.getElementById('minutes').innerHTML = '00';
 }
 
-// TODO: figure out how to make this also re-animate the new numbers
 function resetProblem() {
     assignProblemNumbers();
     clearAnswer();
     document.getElementById('answer-input').focus();
     resetTimer();
+    clearAlert();
+    window.msTickInterval = setInterval(updateTimer, 10);
 }
 
 // Determine if the user's input is correct, and reset the problem if it is
@@ -134,10 +139,9 @@ function checkAnswer(e) {
     answerNum = parseInt(answerText);
     result = getCorrectAnswer();
     if (result == answerNum) {
-        // TODO: Somehow animate the clock stopping and the alert text appearing, or
-        //       at least stagger them.
-        resetProblem();
+        clearInterval(window.msTickInterval);
         showAlert('success-alert', randomSuccessAlert());
+        setTimeout(resetProblem, 1500);
     }
     else {
         clearAnswer();
@@ -149,8 +153,8 @@ function checkAnswer(e) {
 window.onload = function() {
     var answerForm = document.getElementById('answer-form');
     assignProblemNumbers();
-    msTickInterval = setInterval(updateTimer, 10);
-    
+    window.msTickInterval = setInterval(updateTimer, 10);
+
     if (answerForm.addEventListener) {
         answerForm.addEventListener('submit', checkAnswer);
     }

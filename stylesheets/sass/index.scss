@@ -3,8 +3,9 @@
 $bg-color:       #e3e3e3;
 $main-col-width: 600px;
 $font-stack:     'Nunito', sans-serif;
-$font-color:     #304080;
-$font-color: #e3e3e3;
+$font-color:     #e3e3e3;
+$success-color:  #a2ded0;
+$error-color:    #F1A9A0;
 $number-margin:  25px;
 
 #body {
@@ -134,11 +135,11 @@ $number-margin:  25px;
 }
 
 .error-alert {
-    color: #f22613;
+    color: $error-color;
 }
 
 .success-alert {
-    color: #F9BF3B;
+    color: $success-color;
 }
 
 #footer {

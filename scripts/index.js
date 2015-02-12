@@ -5,6 +5,8 @@ window.SUCCESS_ALERTS = [
     "Keep it up!"
 ];
 
+window.lastAlert = '';
+
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -79,13 +81,13 @@ function getCorrectAnswer() {
 
 function randomSuccessAlert(choices) {
     var retval;
-    var currentAlert = document.getElementById('alert-text').innerHTML;
     var idx = getRandomInt(1, 10) % window.SUCCESS_ALERTS.length;
     while (true) {
-        if (currentAlert == window.SUCCESS_ALERTS[idx]) {
+        if (window.lastAlert == window.SUCCESS_ALERTS[idx]) {
             idx = getRandomInt(1, 10) % window.SUCCESS_ALERTS.length;
         }
         else {
+            window.lastAlert = window.SUCCESS_ALERTS[idx];
             return window.SUCCESS_ALERTS[idx];
         }
     }
@@ -141,7 +143,7 @@ function checkAnswer(e) {
     if (result == answerNum) {
         clearInterval(window.msTickInterval);
         showAlert('success-alert', randomSuccessAlert());
-        setTimeout(resetProblem, 1500);
+        setTimeout(resetProblem, 1000);
     }
     else {
         clearAnswer();

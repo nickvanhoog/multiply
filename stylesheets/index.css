@@ -13,19 +13,6 @@
   max-width: 600px;
   text-align: center; }
 
-@keyframes slideRight {
-  0% {
-    transform: translateX(-150%); }
-  50% {
-    transform: translateX(8%); }
-  65% {
-    transform: translateX(-4%); }
-  80% {
-    transform: translateX(4%); }
-  95% {
-    transform: translateX(-2%); }
-  100% {
-    transform: translateX(0%); } }
 @-webkit-keyframes slideRight {
   0% {
     -webkit-transform: translateX(-150%); }
@@ -39,6 +26,56 @@
     -webkit-transform: translateX(-2%); }
   100% {
     -webkit-transform: translateX(0%); } }
+@-moz-keyframes slideRight {
+  0% {
+    -moz-transform: translateX(-150%); }
+  50% {
+    -moz-transform: translateX(8%); }
+  65% {
+    -moz-transform: translateX(-4%); }
+  80% {
+    -moz-transform: translateX(4%); }
+  95% {
+    -moz-transform: translateX(-2%); }
+  100% {
+    -moz-transform: translateX(0%); } }
+@keyframes slideRight {
+  0% {
+    -webkit-transform: translateX(-150%);
+    -moz-transform: translateX(-150%);
+    -ms-transform: translateX(-150%);
+    -o-transform: translateX(-150%);
+    transform: translateX(-150%); }
+  50% {
+    -webkit-transform: translateX(8%);
+    -moz-transform: translateX(8%);
+    -ms-transform: translateX(8%);
+    -o-transform: translateX(8%);
+    transform: translateX(8%); }
+  65% {
+    -webkit-transform: translateX(-4%);
+    -moz-transform: translateX(-4%);
+    -ms-transform: translateX(-4%);
+    -o-transform: translateX(-4%);
+    transform: translateX(-4%); }
+  80% {
+    -webkit-transform: translateX(4%);
+    -moz-transform: translateX(4%);
+    -ms-transform: translateX(4%);
+    -o-transform: translateX(4%);
+    transform: translateX(4%); }
+  95% {
+    -webkit-transform: translateX(-2%);
+    -moz-transform: translateX(-2%);
+    -ms-transform: translateX(-2%);
+    -o-transform: translateX(-2%);
+    transform: translateX(-2%); }
+  100% {
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    -o-transform: translateX(0%);
+    transform: translateX(0%); } }
 #about {
   -webkit-animation: slideRight 1s ease-out;
   -moz-animation: slideRight 1s ease-out;
